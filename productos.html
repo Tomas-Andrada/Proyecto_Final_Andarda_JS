@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="Esproductos.css">
+</head>
+<body>
+    <div class="barra-superior">
+        <div class="nombre-tienda">Demi-God Shop</div>
+        <button id="modoOscuro">Modo Oscuro</button>
+        <button id="btnCarrito">🛒 <span id="cantidadCarrito">0</span></button>
+    </div>
+    <h1>Lista de Productos</h1>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+    </div>
+    <div class="filtros">
+        <input type="text" id="campoBusqueda" placeholder="Buscar por nombre">
+        <button class="filtro-categoria">Electrónicos</button>
+        <button class="filtro-categoria">Ropa</button>
+        <button class="filtro-categoria">Hogar</button>
+    </div>
+    <div class="productos"></div> 
+
+    <script src="productos.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</body>
+</html>

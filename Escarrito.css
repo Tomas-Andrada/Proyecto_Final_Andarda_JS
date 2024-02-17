@@ -1,0 +1,109 @@
+body {
+    background-color: #fff;
+    color: #fff;
+    margin: 0;
+    font-family: Arial, sans-serif; 
+}
+
+.barra-superior-carrito   {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0e62b;
+    color: #004080;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+#btnTienda {
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.carrito-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.carrito-info {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #333; 
+}
+
+.carrito-info h2 {
+    margin-top: 0;
+}
+
+.carrito-total {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #1d70cc;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+}
+#formPago {
+    margin-top: 20px;
+}
+
+#formPago label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#formPago input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+button:hover {
+    background-color: #004080;
+}
+.dark-mode {
+    background-color: #222; 
+    color: #fff; 
+}
+.dark-mode .barra-superior-carrito {
+    background-color: #555; 
+    color: #fff; 
+}
+#modoOscuro {
+    background-color: #333; 
+    color: #fff; 
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#modoOscuro:hover {
+    background-color: #555; 
+}
+.dark-mode .carrito-info {
+    background-color: #333; 
+    color: #ddd; 
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+

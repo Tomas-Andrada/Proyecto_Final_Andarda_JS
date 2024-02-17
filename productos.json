@@ -1,0 +1,93 @@
+{
+    "productos": [
+        {
+            "id": 1,
+            "nombre": "Auriculares",
+            "precio": 10,
+            "imagen": "imagenes/descarga (1).jpeg",
+            "id_categoria": 1
+        },
+        {
+            "id": 2,
+            "nombre": "Mouse",
+            "precio": 15,
+            "imagen": "imagenes/descarga.jpeg",
+            "id_categoria": 1
+        },
+        {
+            "id": 3,
+            "nombre": "Pad",
+            "precio": 20,
+            "imagen": "imagenes/descarga (2).jpeg",
+            "id_categoria": 1
+        },
+        {
+            "id": 4,
+            "nombre": "Teclado",
+            "precio": 25,
+            "imagen": "imagenes/images.jpeg",
+            "id_categoria": 1
+        },
+        {
+            "id": 5,
+            "nombre": "Remera de Boca 2007",
+            "precio": 20,
+            "imagen": "imagenes/boca.png",
+            "id_categoria": 2
+        },
+        {
+            "id": 6,
+            "nombre": "Buzo de Boca",
+            "precio": 40,
+            "imagen": "imagenes/buzo.png",
+            "id_categoria": 2
+        },
+        {
+            "id": 7,
+            "nombre": "Remera de Argentiana campeona del mundo",
+            "precio": 30,
+            "imagen": "imagenes/arg.jpeg",
+            "id_categoria": 2
+        },
+        {
+            "id": 8,
+            "nombre": "Remera del Real Madrid 2002",
+            "precio": 25,
+            "imagen": "imagenes/real.webp",
+            "id_categoria": 2
+        },
+        {
+            "id": 9,
+            "nombre": "Silla",
+            "precio": 25,
+            "imagen": "imagenes/silla.jpeg",
+            "id_categoria": 3
+        },
+        {
+            "id": 10,
+            "nombre": "Sillón",
+            "precio": 55,
+            "imagen": "imagenes/sillon.jpg",
+            "id_categoria": 3
+        },
+        {
+            "id": 11,
+            "nombre": "Mesa",
+            "precio": 45,
+            "imagen": "imagenes/mesa.jpg",
+            "id_categoria": 3
+        },
+        {
+            "id": 12,
+            "nombre": "Horno",
+            "precio": 60,
+            "imagen": "imagenes/horno.jpeg",
+            "id_categoria": 3
+        }
+    ],
+    "categoria": [
+        { "id_categoria": 1, "name": "Electrónicos"},
+        { "id_categoria": 2, "name": "Ropa"},
+        { "id_categoria": 3, "name": "Hogar"}
+    ]
+}
