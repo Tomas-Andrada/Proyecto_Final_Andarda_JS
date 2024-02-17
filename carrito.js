@@ -1,5 +1,6 @@
 const listaCarrito = document.getElementById('listaCarrito');
 const totalP = document.getElementById('total');
+const botonPagar = document.getElementById('botonPagar');
 
 let modoOscuro = localStorage.getItem('modoOscuro') === 'true';
 if (modoOscuro) {
@@ -7,17 +8,21 @@ if (modoOscuro) {
 } else {
     document.body.classList.remove('dark-mode');
 }
+// Función para mostrar el carrito de compras
 const mostrarCarrito = () => {
     let carrito = [];
+    // Obtener el carrito guardado en el almacenamiento local
     const carritoGuardado = localStorage.getItem('carrito');
     if (carritoGuardado) {
         carrito = JSON.parse(carritoGuardado);
     }
     
+    // Limpiar el contenido del contenedor de carrito
     listaCarrito.innerHTML = '';
     let total = 0;
     const carritoSinDuplicados = [];
     carrito.forEach(item => {
+        // Verificar y eliminar duplicados en el carrito
         const indice = carritoSinDuplicados.findIndex(p => p.id === item.id);
         if (indice === -1) {
             carritoSinDuplicados.push({...item});
@@ -25,17 +30,8 @@ const mostrarCarrito = () => {
             carritoSinDuplicados[indice].cantidad += item.cantidad;
         }
     });
-    const eliminarDelCarrito = (id) => {
-        let carrito = [];
-        const carritoGuardado = localStorage.getItem('carrito');
-        if (carritoGuardado) {
-            carrito = JSON.parse(carritoGuardado);
-            carrito = carrito.filter(item => item.id !== id);
-            localStorage.setItem('carrito', JSON.stringify(carrito));
-            mostrarCarrito(); 
-        }
-    };
-
+    
+    // Mostrar los elementos del carrito en la página
     carritoSinDuplicados.forEach(item => {
         const li = document.createElement('li');
         li.textContent = `${item.nombre} - Cantidad: ${item.cantidad} - Precio total: $${(item.precio * item.cantidad).toFixed(2)}`;
@@ -53,10 +49,22 @@ const mostrarCarrito = () => {
     return total;
 };
 
-mostrarCarrito();
+// Función para eliminar un producto del carrito
+const eliminarDelCarrito = (id) => {
+    let carrito = [];
+    const carritoGuardado = localStorage.getItem('carrito');
+    if (carritoGuardado) {
+        carrito = JSON.parse(carritoGuardado);
+        carrito = carrito.filter(item => item.id !== id);
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        // Mostrar el carrito actualizado después de eliminar un producto
+        mostrarCarrito(); 
+    }
+};
 
-const botonPagar = document.getElementById('botonPagar');
+// Función para realizar el pago
 botonPagar.addEventListener('click', function () {
+    // Obtener los valores del formulario de pago
     const nombreInput = document.getElementById('nombre');
     const apellidoInput = document.getElementById('apellido');
     const metodoPagoInput = document.getElementById('metodoPago');
@@ -67,8 +75,10 @@ botonPagar.addEventListener('click', function () {
     const metodoPago = metodoPagoInput.value;
     const numeroTarjeta = numeroTarjetaInput.value;
 
-    if (nombre && apellido && metodoPago && numeroTarjeta) {
-        let formaPago = metodoPago.toLowerCase(); // Aquí obtienes directamente el valor del método de pago
+    // Validar que todos los campos del formulario estén completos
+    if (nombre && apellido && metodoPago && numeroTarjeta && totalP>0) {
+        // Calcular el porcentaje de descuento según el método de pago
+        let formaPago = metodoPago.toLowerCase();
         let porcentaje = 0;
         
         switch (formaPago) {
@@ -83,10 +93,7 @@ botonPagar.addEventListener('click', function () {
                 porcentaje = 0;
         }
         
-        if (porcentaje === 0) {
-            formaPago = "Otro método no reconocido";
-        }
-        
+        // Calcular el descuento y el precio final
         let precioTotal = mostrarCarrito();
         let descuento = calcularDescuento(precioTotal, porcentaje);
         let precioFinal = precioTotal - descuento;
@@ -100,6 +107,7 @@ botonPagar.addEventListener('click', function () {
             <p>Precio Final: $${precioFinal.toFixed(2)}</p>
         `;
         
+        // Mensaje de éxito al usuario
         Swal.fire({
             title: `¡Felicitaciones ${nombre} ${apellido}!`,
             text: 'Tu compra ha sido realizada con éxito.',
@@ -107,14 +115,17 @@ botonPagar.addEventListener('click', function () {
             confirmButtonText: 'Aceptar'
         });
 
+        // Vaciar el carrito después de realizar la compra
         vaciarCarrito();
 
-        // Restablecer los valores del formulario
+        // Restablecer los valores del formulario de pago
         nombreInput.value = '';
         apellidoInput.value = '';
         metodoPagoInput.value = '';
         numeroTarjetaInput.value = '';
+    
     } else {
+        // Mensaje de error si no se completan todos los campos del formulario
         Swal.fire({
             title: "Error",
             text: "Por favor completa todos los campos del formulario.",
@@ -123,15 +134,21 @@ botonPagar.addEventListener('click', function () {
         });
     }
 });
+
+// Evento para volver a la tienda
 const volverTiendaButton = document.getElementById('volverTienda');
 volverTiendaButton.addEventListener('click', function () {
     window.location.href = 'productos.html';
 });
 
+// Función para calcular el descuento
 function calcularDescuento(precioTotal, porcentaje) {
     return (precioTotal * porcentaje) / 100;
 }
+
+// Función para vaciar el carrito
 function vaciarCarrito() {
     localStorage.removeItem('carrito'); 
     mostrarCarrito(); 
 }
+mostrarCarrito();
